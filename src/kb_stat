@@ -1,0 +1,30 @@
+#! /bin/bash - 
+
+# Script for finding frequecies of characters in files with 
+# a given extension
+
+# Usage: kb_stat [path] [-e extension]
+
+# if path is not specified scripts drills down current directory
+# if extension is not specified script uses '*.py'
+
+extension_switch="-e"
+extension=".py"
+path="."
+
+if [ "$#" -ge 4 ]; then
+    echo Expecting at most 3 arguments by $# is given
+    exit 1
+fi
+
+while [ $# -gt 0 ]
+do
+    if [ "$1" = "$extension_switch" ]; then
+        extension="$2"
+        shift
+    else
+        path="$1"
+    fi
+    shift
+done 
+
