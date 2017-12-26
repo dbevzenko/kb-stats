@@ -7,7 +7,8 @@
 for i
 do
     out_file=$i.normalized
+    echo "count frequency symbol" > $out_file
     count=$(awk '{sum+=$1} END {print sum}' "$i")
     # echo Total number of characters in "$i": $count
-    awk -v count=$count '{print $1/count,$2}' $i > $out_file
+    awk -v count=$count '{print $1,$1/count,$2}' $i >> $out_file
 done 
