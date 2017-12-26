@@ -28,3 +28,15 @@ do
     shift
 done 
 
+tmp=$(mktemp)
+
+files=$(find "$path" -name "*$extension" -type f | xargs)
+
+for f in $files
+do
+    tr '[:upper:]' '[:lower:]' < $f | tr -d '[:space:]' >> "$tmp"
+done
+
+sed 's/\(.\)/\1\n/g' "$tmp" | sort | uniq -c | sort -k2
+
+rm "$tmp"
