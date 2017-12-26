@@ -1,0 +1,13 @@
+#! /bin/bash - 
+
+# Script for normalizing output of kb_stat
+
+# Usage: stat_normalize filename
+
+for i
+do
+    out_file=$i.normalized
+    count=$(awk '{sum+=$1} END {print sum}' "$i")
+    # echo Total number of characters in "$i": $count
+    awk -v count=$count '{print $1/count,$2}' $i > $out_file
+done 
