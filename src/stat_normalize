@@ -11,4 +11,5 @@ do
     count=$(awk '{sum+=$1} END {print sum}' "$i")
     # echo Total number of characters in "$i": $count
     awk -v count=$count '{print $1,$1/count,$2}' $i >> $out_file
+    # awk -v count=$count 'BEGIN {printf "%d,%d,\'%s\'", $1,$1/count,$2}' $i >> $out_fileprintf "\'%s\' ", $1
 done 
